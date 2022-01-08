@@ -11,10 +11,18 @@ const personSchema = new Schema({
   age: Number,
   favoriteFoods: [String],
 });
-let Person = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let kyle = new Person({
+    name: 'Kyle Petersen',
+    age: 21,
+    favoriteFoods: ['apples', 'bananas', 'chicken', 'steak'],
+  });
+  kyle.save((err, data) => {
+    if (err) console.log(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
