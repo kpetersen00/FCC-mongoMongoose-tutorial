@@ -108,7 +108,8 @@ const queryChain = (done) => {
     .limit(2)
     .select({ age: 0 })
     .exec((err, data) => {
-      done(err, data);
+      if (err) return console.log(err);
+      done(null, data);
     });
 };
 
